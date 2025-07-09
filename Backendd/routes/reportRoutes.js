@@ -1,8 +1,10 @@
-const express=require("express");
-const { protect,adminOnly } = require("../middlewares/authMiddleware.js");
-const router=express.Router();
-const { exportTasksReport, exportUsersReport } = require("../controllers/reportControllers");
+const express = require("express");
+const { protect, adminOnly } = require("../middlewares/authMiddleware");
+const { exportTasksReport, exportUsersReport } = require("../controllers/reportController");
 
-router.get("/exports/tasks",protect,adminOnly,exportTasksReport);
-router.get("/exports/users",protect,adminOnly,exportUsersReport);
-module.exports=router;
+const router = express.Router();
+
+router.get("/export/tasks", protect, adminOnly, exportTasksReport); // Export all tasks as Excel/PDF
+router.get("/export/users", protect, adminOnly, exportUsersReport); // Export user-task report
+
+module.exports = router;
