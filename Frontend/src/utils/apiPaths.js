@@ -7,6 +7,8 @@ export const API_PATHS = {
     LOGIN: "/api/auth/login", // Authenticate user & return JWT token
     GET_PROFILE: "/api/auth/profile", // Get logged-in user details
     UPDATE_PROFILE: "/api/auth/profile", // Update logged-in user profile
+    FORGOT_PASSWORD: "/api/auth/forgot-password", // Send password reset email
+    RESET_PASSWORD: "/api/auth/reset-password", // Reset password with token
   },
 
   USERS: {

@@ -7,6 +7,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/userContext";
 import { FiMail, FiLock, FiArrowRight, FiCheckCircle } from "react-icons/fi";
+import ForgotPasswordModal from "../../components/Modals/ForgotPasswordModal";
 
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const {updateUser} = useContext(UserContext)
   const navigate = useNavigate();
@@ -111,10 +113,19 @@ const Login = () => {
 
           {/* Password Input */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-              <FiLock className="text-gray-500" />
-              Password
-            </label>
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <FiLock className="text-gray-500" />
+                Password
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowForgotPassword(true)}
+                className="text-sm text-blue-600 hover:text-blue-700 transition-colors duration-200 hover:underline"
+              >
+                Forgot Password?
+              </button>
+            </div>
             <Input
               value={password}
               onChange={({ target }) => setPassword(target.value)}
@@ -180,6 +191,12 @@ const Login = () => {
           </div>
         </form>
       </div>
+
+      {/* Forgot Password Modal */}
+      <ForgotPasswordModal
+        isOpen={showForgotPassword}
+        onClose={() => setShowForgotPassword(false)}
+      />
     </AuthLayout>
   );
 };
